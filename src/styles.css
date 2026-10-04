@@ -208,7 +208,7 @@ h2 { font-size: clamp(46px, 5vw, 74px); line-height: 1.07; margin-top: 20px; }
   .mobile-menu-toggle { display: inline-flex; }
   .mobile-nav { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; padding: 12px 18px 22px; background: var(--color-background); box-shadow: 0 15px 20px oklch(.15 .01 60 / .15); }
   .mobile-nav a { display: flex; justify-content: space-between; padding: 14px 2px; border-bottom: 1px solid var(--color-border); font-size: 14px; }
-  .hero { height: min(750px, calc(100svh - 70px)); min-height: 590px; }
+  .hero { height: min(690px, calc(100svh - 155px)); min-height: 520px; }
   .hero-image { object-position: 55% center; }
   .hero-shade { background: linear-gradient(90deg, oklch(.12 .012 52 / .8), oklch(.12 .012 52 / .3)), linear-gradient(0deg, oklch(.12 .012 52 / .45), transparent 55%); }
   .hero-text { padding-bottom: 20px; }
@@ -239,7 +239,7 @@ h2 { font-size: clamp(46px, 5vw, 74px); line-height: 1.07; margin-top: 20px; }
   .site-footer { padding-bottom: 75px; }
 }
 @media (max-width: 480px) {
-  .hero { min-height: 630px; }
+  .hero { min-height: 520px; }
   .hero-actions { gap: 10px; }
   .hero-actions a { min-height: 47px; padding-inline: 14px; font-size: 11px; }
   .intro-collage { min-height: 330px; }
