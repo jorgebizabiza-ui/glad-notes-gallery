@@ -75,7 +75,7 @@ function Index() {
     const shell = document.querySelector<HTMLElement>(".site-shell");
     if (!shell || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const selector = "h1, h2, h3, p, a, button, label, figcaption, address, small, strong, .brand-monogram, .contact-symbol, .service-index, .why-number, .statement-star, .footer-bottom span";
+    const selector = "h1, h2, h3, p, a, button, label, figcaption, address, small, strong, span";
     const seen = new WeakSet<Element>();
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
