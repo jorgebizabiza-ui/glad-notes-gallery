@@ -87,12 +87,14 @@
 .desktop-nav a:hover, .text-link:hover { color: var(--color-gold); }
 .header-book { margin-left: 8px; }
 .mobile-menu-toggle, .mobile-nav, .mobile-sticky-cta { display: none; }
-.hero { position: relative; height: min(760px, 78vh); min-height: 600px; color: var(--color-on-dark); background: var(--color-deep); }
-.hero-image, .hero-shade { position: absolute; inset: 0; width: 100%; height: 100%; }
-.hero-image { object-fit: cover; object-position: center 43%; }
-.hero-shade { background: linear-gradient(90deg, oklch(.12 .012 52 / .82) 0%, oklch(.12 .012 52 / .52) 47%, oklch(.12 .012 52 / .05) 100%); }
+.hero { position: relative; height: min(720px, calc(100svh - 160px)); min-height: 500px; color: var(--color-on-dark); background: var(--color-deep); isolation: isolate; overflow: hidden; }
+.hero-image, .hero-video, .hero-shade { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-image { object-fit: cover; object-position: center 43%; filter: brightness(.46); }
+.hero-video { left: auto; width: 54%; object-fit: cover; object-position: center; mask-image: linear-gradient(90deg, transparent 0%, black 23%); }
+.hero-shade { background: linear-gradient(90deg, oklch(.12 .012 52 / .88) 0%, oklch(.12 .012 52 / .65) 44%, transparent 80%); }
 .hero-content { position: relative; height: 100%; display: flex; align-items: center; }
-.hero-text { max-width: 690px; padding-bottom: 12px; }
+.hero-text { max-width: 660px; padding-bottom: 12px; animation: hero-enter .9s ease-out both; }
+@keyframes hero-enter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 .eyebrow { display: flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 700; letter-spacing: .19em; color: var(--color-gold); }
 .eyebrow-line { width: 30px; height: 1px; background: currentColor; flex-shrink: 0; }
 .eyebrow-light { color: var(--color-gold); }
@@ -208,11 +210,13 @@ h2 { font-size: clamp(46px, 5vw, 74px); line-height: 1.07; margin-top: 20px; }
   .mobile-menu-toggle { display: inline-flex; }
   .mobile-nav { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; padding: 12px 18px 22px; background: var(--color-background); box-shadow: 0 15px 20px oklch(.15 .01 60 / .15); }
   .mobile-nav a { display: flex; justify-content: space-between; padding: 14px 2px; border-bottom: 1px solid var(--color-border); font-size: 14px; }
-  .hero { height: min(690px, calc(100svh - 225px)); min-height: 490px; }
+  .hero { height: min(660px, calc(100svh - 160px)); min-height: 490px; }
   .hero-image { object-position: 55% center; }
-  .hero-shade { background: linear-gradient(90deg, oklch(.12 .012 52 / .8), oklch(.12 .012 52 / .3)), linear-gradient(0deg, oklch(.12 .012 52 / .45), transparent 55%); }
-  .hero-text { padding-bottom: 20px; }
-  .hero-brand { margin-top: 35px; font-size: 10px; }
+  .hero-video { left: 0; width: 100%; mask-image: none; object-position: center 40%; }
+  .hero-shade { background: linear-gradient(0deg, oklch(.12 .012 52 / .93), oklch(.12 .012 52 / .6) 42%, oklch(.12 .012 52 / .08) 100%); }
+  .hero-content { align-items: end; padding-bottom: 72px; }
+  .hero-text { padding-bottom: 0; }
+  .hero-brand { margin-top: 24px; font-size: 10px; }
   h1 { font-size: clamp(50px, 10vw, 72px); }
   .hero-description { font-size: 14px; }
   .hero-side-note { display: none; }
@@ -240,6 +244,11 @@ h2 { font-size: clamp(46px, 5vw, 74px); line-height: 1.07; margin-top: 20px; }
 }
 @media (max-width: 480px) {
   .hero { min-height: 490px; }
+  .hero-content { padding-bottom: 65px; }
+  .hero-description { margin-top: 18px; line-height: 1.5; }
+  .hero-actions { margin-top: 20px; }
+  .hero-brand { margin-top: 15px; }
+  h1 { font-size: 48px; }
   .hero-actions { gap: 10px; }
   .hero-actions a { min-height: 47px; padding-inline: 14px; font-size: 11px; }
   .intro-collage { min-height: 330px; }
@@ -260,4 +269,5 @@ h2 { font-size: clamp(46px, 5vw, 74px); line-height: 1.07; margin-top: 20px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .hero-video { display: none; }
 }
