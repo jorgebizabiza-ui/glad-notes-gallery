@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, Flower2, Heart, MapPin, Menu, Scissors, Sparkles, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import hero from "@/assets/salon-hero.jpg";
@@ -70,6 +70,41 @@ function Index() {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [request, setRequest] = useState("");
   const [selectedService, setSelectedService] = useState("");
+
+  useEffect(() => {
+    const shell = document.querySelector<HTMLElement>(".site-shell");
+    if (!shell || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const selector = "h1, h2, h3, p, a, button, label, figcaption, address, small, strong, .brand-monogram, .contact-symbol, .service-index, .why-number, .statement-star, .footer-bottom span";
+    const seen = new WeakSet<Element>();
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add("text-reveal-enter");
+        observer.unobserve(entry.target);
+      }
+    }, { threshold: 0.08, rootMargin: "0px 0px -20px 0px" });
+
+    const register = (root: Element) => {
+      const elements = [root, ...root.querySelectorAll(selector)];
+      for (const element of elements) {
+        if (!element.matches(selector) || seen.has(element) || !element.textContent?.trim()) continue;
+        seen.add(element);
+        observer.observe(element);
+      }
+    };
+
+    register(shell);
+    const mutations = new MutationObserver((records) => {
+      for (const record of records) {
+        for (const node of record.addedNodes) {
+          if (node instanceof Element) register(node);
+        }
+      }
+    });
+    mutations.observe(shell, { childList: true, subtree: true });
+    return () => { observer.disconnect(); mutations.disconnect(); };
+  }, []);
 
   function chooseService(name: string) {
     setSelectedService(name);

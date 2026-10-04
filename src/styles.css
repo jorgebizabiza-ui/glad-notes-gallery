@@ -93,8 +93,14 @@
 .hero-video { left: auto; width: 54%; object-fit: cover; object-position: center; mask-image: linear-gradient(90deg, transparent 0%, black 23%); }
 .hero-shade { background: linear-gradient(90deg, oklch(.12 .012 52 / .88) 0%, oklch(.12 .012 52 / .65) 44%, transparent 80%); }
 .hero-content { position: relative; height: 100%; display: flex; align-items: center; }
-.hero-text { max-width: 660px; padding-bottom: 12px; animation: hero-enter .9s ease-out both; }
-@keyframes hero-enter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.hero-text { max-width: 660px; padding-bottom: 12px; }
+@keyframes text-reveal { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.text-reveal-enter { animation: text-reveal .7s cubic-bezier(.2,.7,.2,1) both; }
+.hero-text > .text-reveal-enter:nth-child(2) { animation-delay: .12s; }
+.hero-text > .text-reveal-enter:nth-child(3) { animation-delay: .22s; }
+.hero-text > .text-reveal-enter:nth-child(4) { animation-delay: .34s; }
+.hero-text > .text-reveal-enter:nth-child(5) { animation-delay: .44s; }
+.section-heading .text-reveal-enter, .intro-copy .text-reveal-enter, .about-content-inner .text-reveal-enter, .booking-main > .text-reveal-enter { animation-duration: .85s; }
 .eyebrow { display: flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 700; letter-spacing: .19em; color: var(--color-gold); }
 .eyebrow-line { width: 30px; height: 1px; background: currentColor; flex-shrink: 0; }
 .eyebrow-light { color: var(--color-gold); }
