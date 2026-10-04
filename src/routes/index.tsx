@@ -10,6 +10,8 @@ import styling from "@/assets/salon-styling.jpg";
 import pedicure from "@/assets/salon-pedicure.jpg";
 import interior from "@/assets/salon-interior.jpg";
 import products from "@/assets/salon-products.jpg";
+import salonMotion from "@/assets/salon-motion.mp4.asset.json";
+import salonMotionPoster from "@/assets/salon-motion-poster.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -99,7 +101,8 @@ function Index() {
 
     <main>
       <section className="hero" aria-labelledby="hero-title">
-        <img className="hero-image" src={hero} alt="Profissional a cuidar do cabelo de uma cliente num salão elegante" width={1600} height={1056} fetchPriority="high" />
+        <img className="hero-image" src={hero} alt="" width={1600} height={1056} fetchPriority="high" />
+        <video className="hero-video" src={salonMotion.url} poster={salonMotionPoster.url} autoPlay muted loop playsInline preload="metadata" aria-hidden="true" />
         <div className="hero-shade" />
         <div className="hero-content container">
           <div className="hero-text"><p className="eyebrow eyebrow-light"><span className="eyebrow-line" /> CABELEIREIRO & ESTÉTICA · PORTO</p>
